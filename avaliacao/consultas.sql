@@ -20,15 +20,15 @@ com mais de 3 ingressos vendidos. Utilize a cláusula HAVING para realizar o fil
 
 SELECT 
     f.tituloPortugues AS Nome_do_Filme, 
-    SUM(v.valorIngresso) AS Total_Vendas_Parceladas
-    COUNT (v.id) AS Qtn_ingressos
+    SUM(v.valorIngresso) AS Total_Vendas_Parceladas,
+    COUNT(v.id) AS Qtn_ingressos
 FROM filme f
 JOIN sessao s ON f.id = s.idFilme
 JOIN venda v ON s.id = v.idSessao
 JOIN tipoPagto tp ON v.idTipoPagto = tp.id
 WHERE tp.nome = 'Parcelado'
 GROUP BY f.id, f.tituloPortugues
-HAVING (id.v) GROUP > 3;
+HAVING COUNT(v.id) > 3;
 
 /*
  3) Crie uma consulta para listar a quantidade de usuários 
