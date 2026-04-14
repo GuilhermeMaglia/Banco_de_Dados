@@ -108,7 +108,13 @@ INSERT INTO filme (tituloOriginal, tituloPortugues, duracao, idDiretor, idGenero
 ('The Cabin in The Woods', 'O Segredo da Cabana', 105, 12, 6, 2),
 ('La Murga Loca', 'Don Angelus Pax de volta ao lar', 90, 28, 1, 5),
 ('Cucarachas Assassinas', 'Hey! Hey! Hey! Hey Decio é nosso... Rei', 90, 29, 1, 5),
-('The Incredible Case of the DELETE Without WHERE', 'O incrível caso do DELETE sem WHERE', 120, 7, 1, 2);
+('The Incredible Case of the DELETE Without WHERE', 'O incrível caso do DELETE sem WHERE', 120, 7, 1, 2),
+('The Wolf of Wall Street', 'O Lobo de Wall Street', 180, 52, 3, 2),
+('Inception', 'A Origem', 148, 52, 2, 2),         
+('The Hateful Eight', 'Os Oito Odiados', 168, 53, 8, 2), 
+('Shutter Island', 'Ilha do Medo', 138, 52, 5, 2),
+('Interstellar', 'Interestelar', 169, 55, 2, 2),     
+('Relatos Salvajes', 'Relatos Selvagens', 122, 53, 1, 5);
 
 -- Elenco
 INSERT INTO elenco (idFilme, idAtor) VALUES
@@ -139,7 +145,13 @@ INSERT INTO sessao (idCinema, idFilme, data, horaInicio, publico) VALUES
 (1, 9, '2024-08-01', '21:30:00', 95),
 (2, 1, '2024-08-01', '16:00:00', 38),
 (2, 1, '2024-08-01', '19:00:00', 55),
-(2, 8, '2024-08-01', '21:30:00', 110);
+(2, 8, '2024-08-01', '21:30:00', 110),
+(1, 13, '2024-08-02', '20:00:00', 150),
+(1, 13, '2024-08-05', '20:00:00', 100),  
+(2, 14, '2024-08-05', '21:00:00', 80),  
+(3, 15, '2024-08-06', '19:00:00', 60), 
+(4, 16, '2024-08-06', '20:30:00', 120), 
+(5, 17, '2024-08-07', '18:00:00', 90);
 
 -- Usuario
 INSERT INTO usuario (idCidade, nome, email) VALUES
@@ -159,12 +171,38 @@ INSERT INTO tipoPagto (nome) VALUES
 INSERT INTO venda (idSessao, idUsuario, data, hora, valorIngresso, idTipoPagto) VALUES
 (2, 1, '2024-08-01', '16:00:00', 15.00, 1),
 (4, 2, '2024-08-01', '16:00:00', 10.00, 2),
-(4, 3, '2024-04-01', '16:00:00', 10.00, 2);
+(4, 3, '2024-04-01', '16:00:00', 10.00, 2),
+(7, 1, '2024-08-02', '19:30:00', 25.00, 2),
+(7, 2, '2024-08-02', '19:35:00', 25.00, 2),
+(7, 3, '2024-08-02', '19:40:00', 25.00, 2),
+(7, 4, '2024-08-02', '19:45:00', 25.00, 2),
+(7, 5, '2024-08-02', '19:50:00', 25.00, 2),
+(7, 1, '2024-08-05', '19:00:00', 20.00, 2),
+(7, 2, '2024-08-05', '19:05:00', 20.00, 2),
+(7, 3, '2024-08-05', '19:10:00', 20.00, 2),
+(7, 4, '2024-08-05', '19:15:00', 20.00, 2),
+(7, 5, '2024-08-05', '19:20:00', 20.00, 2),
+(10, 1, '2024-08-06', '19:30:00', 25.00, 2),
+(10, 2, '2024-08-06', '19:35:00', 25.00, 2),
+(10, 3, '2024-08-06', '19:40:00', 25.00, 2),
+(10, 4, '2024-08-06', '19:45:00', 25.00, 2),
+(10, 5, '2024-08-06', '19:50:00', 25.00, 2),
+(10, 6, '2024-08-06', '19:55:00', 25.00, 2);
 
 -- Parcela
 INSERT INTO parcela (idVenda, valor, vencimento, situacao) VALUES
 (2, 5.00, '2024-08-01', 'ABERTO'),
 (2, 5.00, '2024-08-02', 'ABERTO'),
 (2, 5.00, '2024-08-03', 'ABERTO'),
-(3, 5.00, '2024-08-01', 'ABERTO');
+(3, 5.00, '2024-08-01', 'ABERTO'),
+(4, 12.50, '2024-09-02', 'ABERTO'), 
+(4, 12.50, '2024-10-02', 'ABERTO'),
+(5, 12.50, '2024-09-02', 'ABERTO'), 
+(5, 12.50, '2024-10-02', 'ABERTO'),
+(6, 12.50, '2024-09-02', 'ABERTO'), 
+(6, 12.50, '2024-10-02', 'ABERTO'),
+(7, 12.50, '2024-09-02', 'ABERTO'), 
+(7, 12.50, '2024-10-02', 'ABERTO'),
+(8, 12.50, '2024-09-02', 'ABERTO'), 
+(8, 12.50, '2024-10-02', 'ABERTO');
 
