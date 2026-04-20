@@ -91,3 +91,64 @@ DELIMITER //
 END //
 
 DELIMITER ;
+
+/*
+ 9) Crie uma procedure que receba o nome de um ator e liste todos 
+ os filmes em que ele participou. 
+*/ 
+
+DELIMITER //
+
+    CREATE PROCEDURE visualizaFilmesAtor(IN nome_ator VARCHAR(45))
+    BEGIN
+        SELECT
+            a.nome AS Ator,
+            f.tituloPortugues AS Filme,
+            f.duracao AS Duracao_Minutos
+        FROM ator a
+        JOIN elenco e ON a.id = e.idAtor
+        JOIN filme f ON e.idFilme = f.id
+        WHERE a.nome LIKE CONCAT('%', nome_ator, '%');
+    END //
+
+DELIMITER ;
+
+/* 
+10) Crie uma procedure que liste o nome dos atores 
+que ainda não participaram de nenhum filme. 
+*/ 
+
+DELIMITER // 
+
+    CREATE PROCEDURE atoresSemFilmes()
+    BEGIN 
+        SELECT
+            a.nome AS Ator_Sem_Filme
+        FROM ator a
+        LEFT JOIN elenco e ON a.id = e.idAtor
+        WHERE e.idAtor IS NULL
+        ORDER BY a.nome;
+    END //
+
+DELIMITER ;
+
+/* 
+11) Crie uma procedure que liste o título e o gênero de 
+todos os filmes que ainda não foram exibidos em nenhuma
+sessão de cinema. 
+*/ 
+
+DELIMITER //
+
+    CREATE PROCEDURE filmesSemSessao()
+    BEGIN 
+        SELECT
+            f.tituloPortugues AS Titulo_do_Filme,
+            g.nome AS Genero
+        FROM filme f 
+        JOIN genero g ON f.idGenero = g.id
+        LEFT JOIN sessao s ON f.id = s.idFilme
+        WHERE s.id IS NULL;
+    END //
+
+DELIMITER ;
