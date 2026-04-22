@@ -152,3 +152,100 @@ DELIMITER //
     END //
 
 DELIMITER ;
+
+/* 
+12) Crie uma procedure que receba o nome de uma cidade como 
+parâmetro e liste todos os cinemas localizados nesta cidade. 
+*/ 
+
+DELIMITER //
+
+CREATE PROCEDURE listaCinemaCidade(IN p_nome_cidade VARCHAR(45))
+BEGIN
+    SELECT 
+        c.nome AS Cidade,
+        ci.nomeFantasia AS Cinema,
+        ci.endereco AS Endereco,
+        ci.bairro AS Bairro
+    FROM cinema ci
+    JOIN cidade c ON ci.idCidade = c.id
+    WHERE c.nome LIKE CONCAT('%', p_nome_cidade, '%')
+    ORDER BY ci.nomeFantasia;
+END //
+
+DELIMITER ;
+
+/* 
+13) Crie uma procedure que receba dois parâmetros
+(gênero atual e gênero novo) e altere o gênero de 
+todos os filmes que correspondam ao gênero atual 
+para o novo gênero informado. 
+*/ 
+
+DELIMITER //
+
+    CREATE PROCEDURE alteraGenero(
+        IN p_genero_atual VARCHAR(45),
+        IN p_genero_novo VARCHAR(45)
+    )
+    BEGIN 
+        UPDATE filme f
+        JOIN genero g_atual ON f.idGenero = g_atual.id
+        JOIN genero g_novo ON g_novo.nome = p_genero_novo
+        SET f.idGenero = g_novo.id 
+        WHERE g_atual.nome = p_genero_atual;
+    END //
+
+DELIMITER ;
+
+/* 
+14) Crie uma consulta para listar o título e a 
+duração dos filmes de um determinado gênero 
+lançados após uma data específica. 
+Receba o nome do gênero e a data como parâmetros. 
+*/
+
+DELIMITER // 
+
+    CREATE PROCEDURE generoData(
+        IN p_nome_genero VARCHAR(45),
+        IN p_data_limite DATE
+    )
+    BEGIN 
+        SELECT DISTINCT
+            f.tituloPortugues AS Titulo,
+            f.duracao AS Duracao_Minutos
+        FROM filme f
+        JOIN genero g ON f.idGenero = g.id
+        JOIN sessao s ON f.id = s.idFilme
+        WHERE g.nome = p_nome_genero
+            AND s.data > p_data_limite;
+    END //
+
+DELIMITER ;
+
+/* 
+15) Crie uma consulta que liste todas as sessões 
+onde a ocupação do público foi superior a 
+80% da capacidade do cinema. 
+*/ 
+
+DELIMITER //
+
+    CREATE PROCEDURE altaOcupacao()
+    BEGIN 
+        SELECT
+            f.tituloPortugues AS Filme,
+            c.nomeFantasia AS Cinema,
+            s.data AS Data_Sessao,
+            s.publico AS Publico_Presente,
+            c.capacidade AS Capacidade_Total,
+            ROUND((s.publico / c.capacidade) * 100, 2) AS Porcentagem_Ocupacao
+    FROM sessao s
+    JOIN cinema c ON s.idCinema = c.id
+    JOIN filme f ON s.idFilme = f.id
+    WHERE s.publico > (c.capacidade * 0.8)
+    ORDER BY Porcentagem_Ocupacao DESC;
+END //
+
+DELIMITER ;

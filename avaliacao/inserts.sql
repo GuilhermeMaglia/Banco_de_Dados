@@ -151,7 +151,8 @@ INSERT INTO sessao (idCinema, idFilme, data, horaInicio, publico) VALUES
 (2, 14, '2024-08-05', '21:00:00', 80),  
 (3, 15, '2024-08-06', '19:00:00', 60), 
 (4, 16, '2024-08-06', '20:30:00', 120), 
-(5, 17, '2024-08-07', '18:00:00', 90);
+(5, 17, '2024-08-07', '18:00:00', 90),
+(3, 4, '2024-08-05', '20:00:00', 225);
 
 -- Usuario
 INSERT INTO usuario (idCidade, nome, email) VALUES
