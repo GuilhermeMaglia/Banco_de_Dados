@@ -29,3 +29,11 @@ INSERT INTO aluno (nome_aluno, email, data_cadastro) VALUES
 ('Carolina Ribeiro', 'carolina.ribeiro@email.com', '2026-04-14'),
 ('Daniel Correia', 'daniel.correia@email.com', '2026-04-15');
 
+INSERT INTO inscricao (id_aluno, id_curso, data_inscricao, status) VALUES
+(1, 2, '2026-04-05', 'ativo'),
+(2, 1, '2026-04-15', 'ativo'),
+(10, 6, '2026-04-20', 'inativo'),
+(7, 8, '2026-04-15', 'ativo'),
+(1, 3, '2026-04-06', 'ativo'),
+(3, 7, '2026-04-23', 'ativo'),
+(9, 5, '2026-04-21', 'inativo');
